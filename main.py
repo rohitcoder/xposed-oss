@@ -17,6 +17,7 @@ def parse_args():
     parser.add_argument("--log", help="Path to the log file", default="Xposed_tool.log")
     parser.add_argument("-v", "--verbose", help="Enable verbose mode", action="store_true", default=False)
     parser.add_argument("-d", "--debug", help="Enable debug mode", action="store_true", default=False)
+    parser.add_argument("--server", help="Run the tool in server mode", action="store_true", default=False)
     return parser.parse_args()
 
 def setup_logging(log_file, verbose, debug):
@@ -85,14 +86,16 @@ def main():
                 logging.warning(f"Module '{module_name}' not found. Skipping.")
                 continue
 
-    output_file = data_loader.build_result()
-    # Assuming your JSON data is in a file named 'output_data.json'
-    with open('output_data.json', 'r') as json_file:
-        data = json.load(json_file)
-
+    data_loader.build_result()
     # Generate and save the vis network HTML
-    vis_network_code = graph_builder.generate_vis_network('output')
+    graph_builder.generate_vis_network('output')
     print(f"[bold green]Xposed tool execution completed for all specified connections.[/bold green]")
+    if args.server:
+        print(f"[bold cyan]Starting the Xposed server...[/bold cyan]")
+        logging.info("Starting the Xposed server...")
+        # run this infinite loop to keep the server running
+        while True:
+            pass
 
 if __name__ == "__main__":
     main()
