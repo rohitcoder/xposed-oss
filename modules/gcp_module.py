@@ -30,6 +30,14 @@ def execute(config, output_path):
         os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = service_account_key_path
 
         # Run the gcloud command to get IAM policy in JSON format
+        gcloud_command = f"gcloud auth activate-service-account --key-file={service_account_key_path}"
+        try:
+            print(f"Executing gcloud command: {gcloud_command}")
+            subprocess.check_output(gcloud_command, shell=True, text=True)
+        except subprocess.CalledProcessError as e:
+            print(f"Error running gcloud command: {e}")
+
+
         gcloud_command = f"gcloud projects get-iam-policy {project_name} --format=json"
         try:
             print("[bold cyan]Executing gcloud command...[/bold cyan]")
