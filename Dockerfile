@@ -32,7 +32,6 @@ RUN cp setup.py /tmp/xposed/
 
 # Install the Python package (assuming it contains a setup.py file)
 RUN pip3 install /tmp/xposed/
-RUN rm -rf /app /tmp/xposed
 
 # Run xposed from python3 main.py
 ENTRYPOINT ["xposed_oss"]
