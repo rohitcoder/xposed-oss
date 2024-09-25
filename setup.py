@@ -9,7 +9,7 @@ setup(
     name='xposed_oss',
     version=VERSION,   
     description='A tool to map all IAM in google cloud project',
-    long_description=open('README.md').read(),
+    long_description='A tool to map all IAM in google cloud project',
     long_description_content_type="text/markdown",
     url='https://github.com/rohitcoder/xposed-oss',
     author='Rohit Kumar',
