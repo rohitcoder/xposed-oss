@@ -88,9 +88,7 @@ def main():
         data = json.load(json_file)
 
     # Generate and save the vis network HTML
-    vis_network_code = graph_builder.generate_vis_network(data)
-    with open(f'graphviz.html', 'w') as html_file:
-        html_file.write(vis_network_code)
+    vis_network_code = graph_builder.generate_vis_network('output')
     print(f"[bold green]Xposed tool execution completed for all specified connections.[/bold green]")
 
 if __name__ == "__main__":

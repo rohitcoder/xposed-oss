@@ -2,3 +2,11 @@ argparse
 matplotlib
 PyYAML
 rich
+requests
+mysql-connector-python
+kubernetes
+gql[all]
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+google-api-python-client

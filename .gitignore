@@ -1,0 +1,6 @@
+output/*
+*.log
+*.json
+modules/__pycache__
+__pycache__
+results/
