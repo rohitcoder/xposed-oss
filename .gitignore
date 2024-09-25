@@ -4,3 +4,4 @@ output/*
 modules/__pycache__
 __pycache__
 results/
+config.yaml
