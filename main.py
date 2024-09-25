@@ -54,6 +54,9 @@ def load_modules(module_names):
 def main():
     args = parse_args()
     setup_logging(args.log, args.verbose, args.debug)
+    # create output folder if it doesn't exist
+    if not os.path.exists(args.output):
+        os.makedirs(args.output)
 
     # Load configuration
     config = data_loader.load_config(args.config)
