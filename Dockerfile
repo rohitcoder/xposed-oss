@@ -34,4 +34,4 @@ RUN cp setup.py /tmp/xposed/
 RUN pip3 install /tmp/xposed/
 
 # Run xposed from python3 main.py
-ENTRYPOINT ["xposed_oss"]
+ENTRYPOINT ["cd /app/ && python3 main.py"]
