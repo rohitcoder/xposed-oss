@@ -25,6 +25,7 @@ COPY . /app/
 
 RUN cp requirements.txt /tmp/xposed/
 RUN cp setup.cfg /tmp/xposed/
+RUN cp setup.py /tmp/xposed/
 # Install the Python package (assuming it contains a setup.py file)#
 RUN pip3 install /tmp/xposed/
 RUN rm -rf /app /tmp/xposed
