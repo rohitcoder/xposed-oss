@@ -1,5 +1,3 @@
-# Updated main.py
-
 import argparse
 import json
 from rich import print
@@ -8,6 +6,7 @@ import logging
 import importlib
 import os
 from utils import graph_builder, data_loader
+from flask import Flask, send_from_directory
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Xposed Cybersecurity Tool to Build Relationship Graph")
@@ -51,7 +50,6 @@ def load_modules(module_names):
 
     return modules
 
-
 def main():
     args = parse_args()
     setup_logging(args.log, args.verbose, args.debug)
@@ -93,9 +91,22 @@ def main():
     if args.server:
         print(f"[bold cyan]Starting the Xposed server...[/bold cyan]")
         logging.info("Starting the Xposed server...")
-        # run this infinite loop to keep the server running
-        while True:
-            pass
+        
+        # Initialize Flask app
+        app = Flask(__name__, static_folder='results')
+
+        # Route to serve index.html
+        @app.route('/')
+        def serve_index():
+            return send_from_directory('results', 'index.html')
+
+        # Route to serve other static files
+        @app.route('/<path:path>')
+        def serve_file(path):
+            return send_from_directory('results', path)
+
+        # Run the Flask app
+        app.run(host='0.0.0.0', port=80)
 
 if __name__ == "__main__":
     main()
